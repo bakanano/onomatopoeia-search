@@ -4,6 +4,10 @@ import './App.css';
 function App() {
 
   const [pokemonName, setPokemonName] = useState("");
+
+  function search() {
+    console.log("I've been clicked!");
+  }
   
   return (
     <div className="App">
@@ -11,7 +15,8 @@ function App() {
 
       <section className="container">
         <label>Pokémon Name</label>
-        <input type="text" name="pokemon-name"></input>
+        <input type="text" name="pokemon-name" onChange={e=> setPokemonName(e.target.value)}></input>
+        <button onClick={search}>Search</button>
       </section>
     </div>
   );
