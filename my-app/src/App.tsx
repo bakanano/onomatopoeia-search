@@ -7,7 +7,12 @@ function App() {
   
   return (
     <div className="App">
-      <h1>Pokémon Search</h1> 
+      <h1>Pokémon Search</h1>
+
+      <section className="container">
+        <label>Pokémon Name</label>
+        <input type="text" name="pokemon-name"></input>
+      </section>
     </div>
   );
 }
