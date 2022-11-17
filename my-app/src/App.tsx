@@ -7,7 +7,7 @@ function App() {
   
   return (
     <div className="App">
-      <p>Hello, World!</p>
+      <h1>Pokémon Search</h1> 
     </div>
   );
 }
