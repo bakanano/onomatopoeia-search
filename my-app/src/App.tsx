@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import axios from "axios";
+import {Pokemon} from "pokenode-ts";
 
 function App() {
 
@@ -27,6 +28,12 @@ function App() {
         <button onClick={search}>Search</button>
 
       </section>
+
+      {(pokemonInfo == undefined) ? 
+      (<p>Pokemon was not found, please enter a pokemon name.</p>) :
+      <section className="card">
+        <img src={pokemonInfo.}/>
+      </section>}
 
     </div>
   );
