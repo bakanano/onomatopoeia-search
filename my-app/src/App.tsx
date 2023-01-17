@@ -32,6 +32,7 @@ function App() {
       {(pokemonInfo == undefined) ? 
       (<p>Pokemon was not found, please enter a pokemon name.</p>) :
       <section className="card">
+        <h1>{pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1)}</h1>
         <img src={pokemonInfo.sprites.other.dream_world.front_default}/>
       </section>}
 
