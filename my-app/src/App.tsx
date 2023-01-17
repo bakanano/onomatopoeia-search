@@ -6,7 +6,7 @@ import {Pokemon} from "pokenode-ts";
 function App() {
 
   const [pokemonName, setPokemonName] = useState("");
-  const [pokemonInfo, setPokemonInfo] = useState<undefined | any>(undefined);
+  const [pokemonInfo, setPokemonInfo] = useState<undefined | Pokemon | any>(undefined);
 
   const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -32,7 +32,7 @@ function App() {
       {(pokemonInfo == undefined) ? 
       (<p>Pokemon was not found, please enter a pokemon name.</p>) :
       <section className="card">
-        <img src={pokemonInfo.}/>
+        <img src={pokemonInfo.sprites.other.dream_world.front_default}/>
       </section>}
 
     </div>
