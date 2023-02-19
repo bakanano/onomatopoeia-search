@@ -15,6 +15,18 @@ function App() {
           .then((res) => setPokemonInfo(res.data));
   }
   
+  function getPokemonType() {
+    if (pokemonInfo !== undefined && pokemonInfo !== null) {
+      return pokemonInfo.types.map((pokemonType: any) => (pokemonType.type.name))
+    }
+  }
+
+  function getPokemonAbilities() {
+    if (pokemonInfo !== undefined && pokemonInfo !== null) {
+      return pokemonInfo.abilities.map((pokemonAbility: any) => (pokemonAbility.ability.name))
+    }
+  }
+
   return (
     <div className="App">
 
@@ -34,6 +46,8 @@ function App() {
       <section className="card">
         <h1>{pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1)}</h1>
         <img src={pokemonInfo.sprites.other.dream_world.front_default}/>
+        <p>Type: {getPokemonType()}</p>
+        <p>Abilties: {getPokemonAbilities().toString()}</p>
       </section>}
 
     </div>
