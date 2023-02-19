@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import axios from "axios";
 import {Pokemon} from "pokenode-ts";
+import SearchIcon from "@mui/icons-material/Search";
+import IconButton from "@mui/material/IconButton";
 
 function App() {
 
