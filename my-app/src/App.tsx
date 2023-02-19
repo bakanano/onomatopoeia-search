@@ -17,15 +17,24 @@ function App() {
   
   function getPokemonType() {
     if (pokemonInfo !== undefined && pokemonInfo !== null) {
-      return pokemonInfo.types.map((pokemonType: any) => (pokemonType.type.name))
+      return pokemonInfo.types.map((pokemonType: any) => (pokemonType.type.name));
     }
   }
 
   function getPokemonAbilities() {
     if (pokemonInfo !== undefined && pokemonInfo !== null) {
-      return pokemonInfo.abilities.map((pokemonAbility: any) => (pokemonAbility.ability.name))
+      return pokemonInfo.abilities.map((pokemonAbility: any) => (pokemonAbility.ability.name));
     }
   }
+
+  function getHeldItem() {
+    if (pokemonInfo !== undefined && pokemonInfo !== null) {
+      if (pokemonInfo.held_items.length === 0) {
+        return "None";
+      }
+      return pokemonInfo.held_items.map((heldItem: any) => (heldItem.item.name));
+    }
+  } 
 
   return (
     <div className="App">
@@ -48,6 +57,7 @@ function App() {
         <img src={pokemonInfo.sprites.other.dream_world.front_default}/>
         <p>Type: {getPokemonType()}</p>
         <p>Abilties: {getPokemonAbilities().toString()}</p>
+        <p>Held Item(s): {getHeldItem().toString()}</p>
       </section>}
 
     </div>
