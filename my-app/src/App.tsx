@@ -3,7 +3,7 @@ import './App.css';
 import axios from "axios";
 import {Pokemon} from "pokenode-ts";
 import SearchIcon from "@mui/icons-material/Search";
-import {IconButton, TextField, Card} from "@mui/material/";
+import {IconButton, TextField, Card, Grid} from "@mui/material/";
 
 function App() {
 
@@ -110,22 +110,24 @@ function App() {
 
       {(pokemonInfo == undefined) ? 
       (<div></div>) :
-      <section>
+      <section className="pokeCard">
         <Card sx={{backgroundColor: getBackgroundColor(pokemonInfo)}}>
+          <Grid>
             {pokemonInfo === undefined || pokemonInfo === null ? (
             <h1>Pokemon was not found, please enter a pokemon name.</h1>
             ) : (
-              <div>
+              <div className="pokeStats">
                 <h1>{pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1)}</h1>
+                <h2></h2>
                 <img src={pokemonInfo.sprites.other.dream_world.front_default}/>
-                <p>Type: {getPokemonType()}</p>
+                <p>Type: {getPokemonType().toString()}</p>
                 <p>Abilties: {getPokemonAbilities().toString()}</p>
                 <p>Held Item(s): {getHeldItem().toString()}</p>
               </div>
             )}
+          </Grid>
         </Card>
       </section>}
-
     </div>
   );
 }
