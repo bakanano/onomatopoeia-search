@@ -1,3 +1,3 @@
 # pokedex-search
 
-Using API from https://pokeapi.co/
+Typescript and React web application using Pokedex API from https://pokeapi.co/
