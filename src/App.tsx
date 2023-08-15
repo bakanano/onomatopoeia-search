@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import "./App.css";
 import axios from "axios";
 import {Pokemon} from "pokenode-ts";
 import SearchIcon from "@mui/icons-material/Search";
 import {IconButton, TextField, Card, Grid} from "@mui/material/";
-
 function App() {
 
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonInfo, setPokemonInfo] = useState<undefined | Pokemon | any>(undefined);
 
   const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
-
+  
   function search() {
     axios.get(BASE_URL + pokemonName)
           .then((res) => setPokemonInfo(res.data));
@@ -108,7 +107,7 @@ function App() {
         </IconButton>
       </section>
 
-      {(pokemonInfo == undefined) ? 
+      {(pokemonInfo === undefined) ? 
       (<div></div>) :
       <section className="pokeCard">
         <Card sx={{backgroundColor: getBackgroundColor(pokemonInfo)}}>
