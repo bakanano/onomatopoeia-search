@@ -1,13 +1,3 @@
-body {
-    --color-background: #fafafa;
-    --color-foreground: #1f2023;
-}
-
-body.dark {
-    --color-background: #1f2023;
-    --color-foreground: #efefef;
-}
-
 .App {
     text-align: center;
     overflow: hidden;
@@ -20,11 +10,6 @@ body.dark {
     min-width: 100vh;
 }
 
-.pokeCard {
-    padding: 3rem;
-    display: inline-block;
-}
-
-.pokeStats > p1 {
-    margin: 1rem;
+section {
+    margin: 2rem;
 }

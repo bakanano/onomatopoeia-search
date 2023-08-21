@@ -1,103 +1,60 @@
 import React, {useState, useEffect} from 'react';
 import "./App.css";
 import axios from "axios";
-import {Pokemon} from "pokenode-ts";
 import SearchIcon from "@mui/icons-material/Search";
 import {IconButton, TextField, Card, Grid} from "@mui/material/";
+
 function App() {
 
-  const [pokemonName, setPokemonName] = useState("");
-  const [pokemonInfo, setPokemonInfo] = useState<undefined | Pokemon | any>(undefined);
+  const [onomatopoeia, setOnomatopoeia] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [wordInfo, setWordInfo] = useState([]);
+  const [backgroundColors, setBackgroundColors] = useState<string[]>([]);
 
-  const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
+  const BASE_URL = "https://cors-proxy-onomatopoeia-7e2ec4ca0944.herokuapp.com/https://jisho.org/api/v1/search/words";
   
   function search() {
-    axios.get(BASE_URL + pokemonName)
-          .then((res) => setPokemonInfo(res.data));
-  }
-  
-  function getPokemonType() {
-    if (pokemonInfo !== undefined && pokemonInfo !== null) {
-      return pokemonInfo.types.map((pokemonType: any) => (pokemonType.type.name));
-    }
-  }
+    try {
+      axios.get(`${BASE_URL}?keyword=${encodeURI(onomatopoeia)}`)
+        .then((res) => {
+          const onomatopoeiaWord = res.data.data.filter((word: any) => {
+            return word.senses.some((sense: any) => sense.tags.includes("Onomatopoeic or mimetic word"))
+          })
+          if (onomatopoeiaWord.length === 0) {
+            setErrorMessage("Please enter a onomatopoeic word");
+            setWordInfo([]);
+          } else {
+            setWordInfo(onomatopoeiaWord);
+            setErrorMessage("");
+            setBackgroundColors(Array(onomatopoeiaWord.length).fill(getBackgroundColor()));
+          }
+      });
 
-  function getPokemonAbilities() {
-    if (pokemonInfo !== undefined && pokemonInfo !== null) {
-      return pokemonInfo.abilities.map((pokemonAbility: any) => (pokemonAbility.ability.name));
-    }
-  }
-
-  function getHeldItem() {
-    if (pokemonInfo !== undefined && pokemonInfo !== null) {
-      if (pokemonInfo.held_items.length === 0) {
-        return "None";
-      }
-      return pokemonInfo.held_items.map((heldItem: any) => (heldItem.item.name));
+    } catch(error) {
+          console.error("Error", error);
     }
   }
   
-  function getBackgroundColor(poke: Pokemon | undefined | null) {
-    let backgroundColor = "#EEE8AA";
-    if (poke === undefined || poke === null) {
-      return backgroundColor;
-    }
-    let pokemonTypes = poke.types.map((pokeType) => pokeType.type.name);
-    if (pokemonTypes.includes("normal")) {
-      backgroundColor = "#A8A77A";
-    } else if (pokemonTypes.includes("fire")) {
-      backgroundColor = "#EE8130";
-    } else if (pokemonTypes.includes("water")) {
-      backgroundColor = "#6390F0";
-    } else if (pokemonTypes.includes("electric")) {
-      backgroundColor = "#F7D02C";
-    } else if (pokemonTypes.includes("grass")) {
-      backgroundColor = "#7AC74C";
-    } else if (pokemonTypes.includes("ice")) {
-      backgroundColor = "#96D9D6";
-    } else if (pokemonTypes.includes("fighting")) {
-      backgroundColor = "#C22E28";
-    } else if (pokemonTypes.includes("poison")) {
-      backgroundColor = "#A33EA1";
-    } else if (pokemonTypes.includes("ground")) {
-      backgroundColor = "#E2BF65";
-    } else if (pokemonTypes.includes("flying")) {
-      backgroundColor = "#A98FF3";
-    } else if (pokemonTypes.includes("psychic")) {
-      backgroundColor = "#F95587";
-    } else if (pokemonTypes.includes("bug")) {
-      backgroundColor = "#A6B91A";
-    } else if (pokemonTypes.includes("rock")) {
-      backgroundColor = "#B6A136";
-    } else if (pokemonTypes.includes("ghost")) {
-      backgroundColor = "#735797";
-    } else if (pokemonTypes.includes("dragon")) {
-      backgroundColor = "#6F35FC";
-    } else if (pokemonTypes.includes("dark")) {
-      backgroundColor = "#705746";
-    } else if (pokemonTypes.includes("steel")) {
-      backgroundColor = "#B7B7CE";
-    } else if (pokemonTypes.includes("fairy")) {
-      backgroundColor = "#D685AD";
-    }
-    return backgroundColor;
+  function getBackgroundColor() {
+    const colors = ["#EEE8AA", "#A8A77A", "#EE8130", "#6390F0", "#F7D02C", "#7AC74C", "#E2BF65", "#F95587", "#96D9D6", "#6F35FC", "#C22E28", "#D685AD", "#B7B7CE", "#A33EA1", "#705746", "#B6A136"]
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 
-  return (
+    return (
     <div className="App">
 
-      <h1>Pokémon Search</h1>
+      <h1>Japanese Onomatopoeia Search</h1>
 
       <section className="container">
 
         <TextField 
         type="text"
         variant="outlined"
-        label="Enter a Pokémon"
+        label="Enter word"
         placeholder="Search"
-        name="pokemon-name"
-        value={pokemonName}
-        onChange={(prop: any)=> setPokemonName(prop.target.value)}>
+        name="onomatopoeia"
+        value={onomatopoeia}
+        onChange={(e)=> setOnomatopoeia(e.target.value)}>
         </TextField>
         <IconButton
         aria-label="search"
@@ -107,28 +64,36 @@ function App() {
         </IconButton>
       </section>
 
-      {(pokemonInfo === undefined) ? 
-      (<div></div>) :
-      <section className="pokeCard">
-        <Card sx={{backgroundColor: getBackgroundColor(pokemonInfo)}}>
-          <Grid>
-            {pokemonInfo === undefined || pokemonInfo === null ? (
-            <h1>Pokemon was not found, please enter a pokemon name.</h1>
-            ) : (
-              <div className="pokeStats">
-                <h1>{pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1)}</h1>
-                <h2></h2>
-                <img src={pokemonInfo.sprites.other.dream_world.front_default}/>
-                <p>Type: {getPokemonType().toString()}</p>
-                <p>Abilties: {getPokemonAbilities().toString()}</p>
-                <p>Held Item(s): {getHeldItem().toString()}</p>
+      {errorMessage && <p className="error">{errorMessage}</p>}
+
+      {wordInfo.map((word: any, index) => (
+
+        <section>
+          <Card style={{background: backgroundColors[index]}}>
+            <Grid>
+              <div className="wordInfo" key={index}>
+                <h1>{word.japanese[0]?.reading}</h1>
+                <p><b>Type:</b> {word.senses[0].tags[0]}</p>
+                <p><b>Meanings:</b> {word.senses.map((sense: any, senseIndex: number) => (
+                  <span key={senseIndex}>
+                    {sense.english_definitions.join(", ")}
+                    {senseIndex !== word.senses.length - 1 && <br/>}
+                  </span>
+                ))}
+                </p>
+                <p><b>Parts of Speech:</b> {word.senses.map((sense: any, senseIndex: number) => (
+                  <span key={senseIndex}>
+                    {sense.parts_of_speech.join(', ')}
+                    {senseIndex !== word.senses.length - 1 && ', '}
+                  </span>
+                ))}</p>
               </div>
-            )}
-          </Grid>
-        </Card>
-      </section>}
+            </Grid>
+          </Card>
+        </section>
+      ))}
     </div>
-  );
+    )
 }
 
 export default App;

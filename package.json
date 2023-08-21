@@ -1,6 +1,6 @@
 {
-  "homepage": "https://bakanano.github.io/pokedex-search",
-  "name": "pokedex-search",
+  "homepage": "https://bakanano.github.io/onomatopoeia-search",
+  "name": "japanese-onomatopoeia-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

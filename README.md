@@ -2,6 +2,9 @@
 
 Typescript and React web application using Pokedex API from https://pokeapi.co/
 
+# What I learnt
+
+
 # Screenshots
 
 ![260620306-a7325c84-4bc4-4ed3-906d-fdbb9453b285](https://github.com/bakanano/pokedex-search/assets/17448534/49c384b8-b4cf-43f9-9061-630889fb01f9)
