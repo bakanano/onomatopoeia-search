@@ -1,15 +1,72 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
     text-align: center;
     overflow: hidden;
+}
+
+.App.light {
+    background-color: #ffffff;
+    color: #000000;
+}
+  
+.App.dark {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+}
+
+.App.dark .MuiOutlinedInput-input {
+    color: white;
+}
+
+.App.dark .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #00bcd4;
+}
+
+.App.dark .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #008ba2; 
+}
+
+.App.dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #006980; 
+}
+
+.App.dark .error {
+    color: #D2042D;
+}
+
+.App.light .MuiOutlinedInput-input {
+    color: black !important
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 100vh;
+
+}
+
+.container {
+    flex-direction: column;
+}
+
+.darkModeToggle {
+    gap: 20px;
 }
 
 section {
     margin: 2rem;
+}
+
+#root {
+    height: 100%;
 }
