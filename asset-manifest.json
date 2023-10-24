@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/onomatopoeia-search/static/css/main.c14a443e.css",
-    "main.js": "/onomatopoeia-search/static/js/main.43472e11.js",
+    "main.css": "/onomatopoeia-search/static/css/main.79a1287f.css",
+    "main.js": "/onomatopoeia-search/static/js/main.9b4c6cc3.js",
     "index.html": "/onomatopoeia-search/index.html",
-    "main.c14a443e.css.map": "/onomatopoeia-search/static/css/main.c14a443e.css.map",
-    "main.43472e11.js.map": "/onomatopoeia-search/static/js/main.43472e11.js.map"
+    "main.79a1287f.css.map": "/onomatopoeia-search/static/css/main.79a1287f.css.map",
+    "main.9b4c6cc3.js.map": "/onomatopoeia-search/static/js/main.9b4c6cc3.js.map"
   },
   "entrypoints": [
-    "static/css/main.c14a443e.css",
-    "static/js/main.43472e11.js"
+    "static/css/main.79a1287f.css",
+    "static/js/main.9b4c6cc3.js"
   ]
 }
