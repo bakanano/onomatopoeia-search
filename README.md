@@ -1,11 +1,11 @@
 # Japanese Onomatopoeic Word Search
 
-Typescript and React web application using Jisho API from https://jisho.org/
+Typescript/React web application using Jisho API from https://jisho.org/ using MaterialUi library
 
 # Usage
 
  Searching for Onomatopoeia: Just type the onomatopoeic word you are interested in, and press Enter or click the search button.
- 
+
 # Screenshots
 ## Dark Mode
 ![firefox_fYe1Kca0jA](https://user-images.githubusercontent.com/17448534/277605397-f92a08d7-901c-47b9-83ce-76875a245519.jpg)
