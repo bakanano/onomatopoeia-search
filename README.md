@@ -12,7 +12,7 @@ Typescript/React web application using Jisho API from https://jisho.org/ using M
 ![firefox_ABLsp6pofB](https://user-images.githubusercontent.com/17448534/277605402-e4ed8767-a806-43bb-bd0e-9f37215b492d.jpg)
 ![firefox_UPLH6V7CEJ](https://user-images.githubusercontent.com/17448534/277605387-b75643dd-a687-47dc-b8b5-c58d56026d9d.jpg)
 
-##Light Mode
+## Light Mode
 
 ![Alt text](https://user-images.githubusercontent.com/17448534/277605613-cf688916-6531-442b-ba4f-ceba8774e3b2.jpg)
 ![Alt text](https://user-images.githubusercontent.com/17448534/277605504-b73a19d0-f31b-49dd-af94-fb6f35954992.jpg)
